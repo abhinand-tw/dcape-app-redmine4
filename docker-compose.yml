@@ -1,0 +1,47 @@
+version: '3.6'
+
+services:
+
+  www:
+    image: ${IMAGE}:${IMAGE_VER}
+    restart: always
+    networks:
+      - lan
+    labels:
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:${APP_SITE}"
+      - "traefik.frontend.redirect.entryPoint=${REDIR_ENTRY}"
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ../../data/redmine/files:/usr/src/redmine/files
+      - ../../data/redmine/plugins:/usr/src/redmine/plugins
+      - ../../data/redmine/tmp:/usr/src/redmine/tmp
+# public folder need store to external storage, because redmine when creating the structure of
+# database and install plugins writes data about sessions, files assets and other data
+      - ../../data/redmine/public:/usr/src/redmine/public
+      - ../../data/redmine/db:/usr/src/redmine/db
+# Put redmine logfiles into a volume. This also works around bug
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=810669
+# caused by base image using old version of coreutils
+# which causes "tail: unrecognized file system type 0x794c7630 for '../some_dir/some.log'"
+# when using docker with overlay storage driver.
+      - ../../log/redmine:/usr/src/redmine/log:rw
+    environment:
+      - REDMINE_DB_POSTGRES=db
+      - REDMINE_DB_USERNAME=${DB_USER}
+      - REDMINE_DB_PASSWORD=${DB_PASS}
+      - REDMINE_DB_DATABASE=${DB_NAME}
+      - REDMINE_HTTPS=true
+      - REDMINE_PLUGINS_LIST=${PLUGINS_LIST}
+      - EMAIL_CONFIG_DELIVERY_METHOD=${REDMINE_EMAIL_DELIVERY_METHOD}
+      - EMAIL_CONFIG_ADDRESS=${REDMINE_EMAIL_ADDRESS}
+      - EMAIL_CONFIG_PORT=${REDMINE_EMAIL_PORT}
+      - EMAIL_CONFIG_DOMAIN=${REDMINE_EMAIL_DOMAIN}
+      - EMAIL_CONFIG_AUTHENTICATION=${REDMINE_EMAIL_AUTHENTICATION}
+      - EMAIL_CONFIG_USER_NAME=${REDMINE_EMAIL_USER_NAME}
+      - EMAIL_CONFIG_PASSWORD=${REDMINE_EMAIL_PASSWORD}
+networks:
+  lan:
+    external:
+      name: ${DCAPE_NET}
