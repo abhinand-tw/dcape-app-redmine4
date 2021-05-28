@@ -1,38 +1,28 @@
 # dcape-app-redmine Makefile
-# the Makefile config and start special docker image with redmine3.4.4, plugins, passenger5.1.12 as a service with docker-compose for dcape server
-
-# broken installations plugins: issues_tree smart_issues_sort postgresql_search
-#smart_issues_sort last commit more 3 years later
-# user_specific_theme) \ is same function to theme_changer, - disable the plugin,
-#vote_on_issue install ok, but not vork - have syntx error with database work
-# tags and redmineup_tags - conflicted, must install only one, now select redmineup_tags becouse other plugins from redmineup.com use
-# issue_tabs - don't use because swith for order show comments and post only - reverse mode.
+# the Makefile config and start standart docker redmine image with dcape adaptation config and dirs
 
 SHELL               = /bin/bash
 CFG                ?= .env
 
+# Site host
+APP_SITE           ?= rm.lan
+# Redmine subdirs (plugins, files, tmp, public, db, log ) index for use on dcape 
+DIR_INDEX          ?= rm
+
 # Database name
-DB_NAME            ?= redmine-test
+DB_NAME            ?= redmine-$(DIR_INDEX)
 # Database user name
-DB_USER            ?= redminedbuser
+DB_USER            ?= redmine-$(DIR_INDEX)
 # Database user password
 DB_PASS            ?= $(shell < /dev/urandom tr -dc A-Za-z0-9 | head -c14; echo)
 # Database dump filename, without extensions (.gz), for import on create (you must use file .gz formant)
 DB_SOURCE          ?=
 
 
-#Plugin list for instal if redmine start first time (the name of the plugin must the same as the name of the plugin directory in the image)
-PLUGINS_LIST=sidebar_hide redmine_fixed_header redmine_drawio redmine_wiki_lists  redmine_zenedit redmineup_tags \
-  redmine_theme_changer a_common_libs unread_issues usability redmine_user_specific_theme view_customize \
-  redmine_wiki_extensions issue_id redmine_issue_todo_lists easy_mindmup easy_wbs redhopper redmine_code_review redmine_local_avatars
-
-# Site host
-APP_SITE           ?= rm.ubuntu.lan
-
 # Docker image name
-IMAGE              ?= dopos/redmine
+IMAGE              ?= redmine
 # Docker image tag
-IMAGE_VER          ?= 0.4
+IMAGE_VER          ?= 4.1.3
 # Docker-compose project name (container name prefix)
 PROJECT_NAME       ?= $(shell basename $$PWD)
 # dcape container name prefix
@@ -52,7 +42,7 @@ REDMINE_EMAIL_USER_NAME       =
 REDMINE_EMAIL_PASSWORD        =
 
 # Docker-compose image tag
-DC_VER             ?= 1.23.2
+DC_VER             ?= 1.28.6
 
 define CONFIG_DEF
 # ------------------------------------------------------------------------------
@@ -60,6 +50,8 @@ define CONFIG_DEF
 
 # Site host
 APP_SITE=$(APP_SITE)
+# Redmine subdirs (plugins, files, tmp, public, db, log ) index use for dcape 
+DIR_INDEX=$(DIR_INDEX)
 
 # Database name
 DB_NAME=$(DB_NAME)
@@ -82,9 +74,6 @@ PROJECT_NAME=$(PROJECT_NAME)
 DCAPE_NET=$(DCAPE_NET)
 # dcape postgresql container name
 DCAPE_DB=$(DCAPE_DB)
-
-# Plugins list
-PLUGINS_LIST=$(PLUGINS_LIST)
 
 #environments for SMTP email configuration
 REDMINE_EMAIL_DELIVERY_METHOD=$(REDMINE_EMAIL_DELIVERY_METHOD)
@@ -146,7 +135,6 @@ docker-wait:
 
 # Database import script
 # DCAPE_DB_DUMP_DEST must be set in pg container
-
 define IMPORT_SCRIPT
 [[ "$$DCAPE_DB_DUMP_DEST" ]] || { echo "DCAPE_DB_DUMP_DEST not set. Exiting" ; exit 1 ; } ; \
 DB_NAME="$$1" ; DB_USER="$$2" ; DB_PASS="$$3" ; DB_SOURCE="$$4" ; \

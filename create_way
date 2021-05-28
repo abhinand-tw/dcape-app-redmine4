@@ -1,1 +1,15 @@
 
+#Hystory of redmine plugins use
+# broken installations plugins: issues_tree smart_issues_sort postgresql_search
+#smart_issues_sort last commit more 3 years later
+# user_specific_theme) \ is same function to theme_changer, - disable the plugin,
+#vote_on_issue install ok, but not vork - have syntx error with database work
+# tags and redmineup_tags - conflicted, must install only one, now select redmineup_tags becouse other plugins from redmineup.com use
+# issue_tabs - don't use because swith for order show comments and post only - reverse mode.
+
+
+
+#Plugin list if use with previous (3.4) version redmine 
+PLUGINS_LIST=sidebar_hide redmine_fixed_header redmine_drawio redmine_wiki_lists  redmine_zenedit redmineup_tags \
+  redmine_theme_changer a_common_libs unread_issues usability redmine_user_specific_theme view_customize \
+  redmine_wiki_extensions issue_id redmine_issue_todo_lists easy_mindmup easy_wbs redhopper redmine_code_review redmine_local_avatars
