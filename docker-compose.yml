@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   www:
-#    build: ${IMAGE_BUILD}:${IMAGE_BUILD_VER}
+    build: ${IMAGE_BUILD}:${IMAGE_BUILD_VER}
     restart: always
     networks:
       - lan

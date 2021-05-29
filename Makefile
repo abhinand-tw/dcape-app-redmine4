@@ -9,7 +9,7 @@ APP_SITE           ?= rm.lan
 # Redmine subdirs (plugins, files, tmp, public, db, log ) index for use on dcape 
 PRJ_INDEX          ?= rm4
 # Name for custom build image
-IMAGE_BUILD        ?= redmine_$$PRJ_INDEX
+IMAGE_BUILD        ?= redmine_$(PRJ_INDEX)
 # Version for custom build image
 IMAGE_BUILD_VER    ?= 0.1
 
