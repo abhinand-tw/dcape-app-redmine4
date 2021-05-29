@@ -2,7 +2,10 @@ version: '3.8'
 
 services:
   www:
-    build: .   
+    build: .
+      args:
+        IMAGE_BASE: ${IMAGE_BASE}
+        IMAGE_BASE_VER: ${IMAGE_BASE_VER}   
     restart: always
     networks:
       - lan
