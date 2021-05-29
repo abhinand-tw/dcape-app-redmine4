@@ -8,6 +8,11 @@ CFG                ?= .env
 APP_SITE           ?= rm.lan
 # Redmine subdirs (plugins, files, tmp, public, db, log ) index for use on dcape 
 DIR_INDEX          ?= rm
+# Name for custumise builded image
+IMAGE_BUILD        ?= redmine_$DIR_INDEX
+# Version
+IMAGE_BUILD_VER    ?= 0.1
+
 
 # Database name
 DB_NAME            ?= redmine-$(DIR_INDEX)
@@ -19,10 +24,17 @@ DB_PASS            ?= $(shell < /dev/urandom tr -dc A-Za-z0-9 | head -c14; echo)
 DB_SOURCE          ?=
 
 
-# Docker image name
-IMAGE              ?= redmine
-# Docker image tag
-IMAGE_VER          ?= 4.1.3
+# Docker base image name that use for building custom image
+IMAGE_BASE         ?= redmine
+# Docker base image tag
+IMAGE_BASE_VER     ?= 4.1.3
+# Subdirs list for copy to volume and prepare use with dcape, 
+# log and files dirs empry and prepare always, don't need insert to SUBDIRS
+SUBDIRS            ?= "public db plugins tmp"
+# Redmine user ID for IMAGE_BASE
+UID_BASE           ?= 999
+# Redmine Group ID for IMAGE_BASE
+GIUD_BASE          ?= 999 
 # Docker-compose project name (container name prefix)
 PROJECT_NAME       ?= $(shell basename $$PWD)
 # dcape container name prefix
@@ -52,6 +64,11 @@ define CONFIG_DEF
 APP_SITE=$(APP_SITE)
 # Redmine subdirs (plugins, files, tmp, public, db, log ) index use for dcape 
 DIR_INDEX=$(DIR_INDEX)
+# Name for custumise builded image
+IMAGE_BUILD=$(IMAGE_BUILD)
+# Version
+IMAGE_BUILD_VER=$(IMAGE_BUILD_VER)
+
 
 # Database name
 DB_NAME=$(DB_NAME)
@@ -64,10 +81,17 @@ DB_SOURCE=$(DB_SOURCE)
 
 # Docker details
 
-# Docker image name
-IMAGE=$(IMAGE)
-# Docker image tag
-IMAGE_VER=$(IMAGE_VER)
+# Docker base image name that use for building custom image
+IMAGE_BASE=$(IMAGE_BASE)
+# Docker base image tag
+IMAGE_BASE_VER=$(IMAGE_BASE_VER)
+# Subdirs list for copy to volume and use with dcape
+SUBDIRS=$(SUBDIRS)
+# Redmine user ID for IMAGE_BASE
+UID_BASE=$(999)
+# Redmine Group ID for IMAGE_BASE
+GIUD_BASE=$(999) 
+
 # Docker-compose project name (container name prefix)
 PROJECT_NAME=$(PROJECT_NAME)
 # dcape network attach to
@@ -115,9 +139,9 @@ up: CMD=up -d
 up: dc
 
 ## рестарт контейнеров
-reup:
-reup: CMD=up --force-recreate -d
-reup: dc
+reup: echo "Empty ok!"
+#reup: CMD=up --force-recreate -d
+#reup: dc
 
 ## остановка и удаление всех контейнеров
 down:
@@ -192,6 +216,19 @@ db-drop: docker-wait
 db-dump: docker-wait
 	@echo "*** $@ ***"
 	@echo "$$EXPORT_SCRIPT" | docker exec -i --user root $$DCAPE_DB bash -s - $$DB_NAME $$DB_USER $$APP_SITE
+
+# prepare subdirectory from IMAGE_BASE to use in permanent with dcape environment
+subdirs:
+	@for dir in $$SUBDIRS \
+	 do \
+	   mkdir ../../data/redmine_$$dir
+	   docker cp $(docker create $$IMAGE_BASE:IMAGE_BASE_VER):/usr/src/redmine/$dir ../../data/redmine_$$dir 
+	 done 
+
+
+
+
+
 # ------------------------------------------------------------------------------
 # $$PWD используется для того, чтобы текущий каталог был доступен в контейнере по тому же пути
 # и относительные тома новых контейнеров могли его использовать
