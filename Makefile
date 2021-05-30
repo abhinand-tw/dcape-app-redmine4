@@ -224,7 +224,7 @@ subdirs:
 	@if [[ -d ../../data/redmine_$$PRJ_INDEX ]] ; then \
 	  echo "Subdirs: data/redmine_$$PRJ_INDEX already exist, skip creating..." ; \
 	else \
-	  echo -n "Init redmine. Create -$$SUBDIRS- in data/redmine_$$PRJ_INDEX..." ;\
+	  echo -n "Init redmine. Create subdirs: public, plugins and other in data/redmine_$$PRJ_INDEX..." ;\
 	  mkdir ../../data/redmine_$$PRJ_INDEX ; \
 	  mkdir ../../log/redmine_$$PRJ_INDEX ; \
       for dir in $$SUBDIRS ; do \
