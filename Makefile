@@ -220,14 +220,14 @@ db-dump: docker-wait
 
 # prepare subdirectory from IMAGE_BASE to use in permanent with dcape environment
 subdirs:
-	@echo "*** $@ ***" 
-	@if[[ -d ../../data/redmine_$$PRJ_INDEX ]]; then \
+	@echo "*** $@ ***"	
+	@if [[ -d ../../data/redmine_$$PRJ_INDEX ]] ; then \
 	  echo "Subdirs: data/redmine_$$PRJ_INDEX already exist, skip creating..." ; \
 	else \
-	  echo "Init redmine. Create -$$SUBDIRS- in data/redmine_$$PRJ_INDEX..." ;\
+	  echo -n "Init redmine. Create -$$SUBDIRS- in data/redmine_$$PRJ_INDEX..." ;\
 	  mkdir ../../data/redmine_$$PRJ_INDEX ; \
 	  mkdir ../../log/redmine_$$PRJ_INDEX ; \
-	  for dir in $$SUBDIRS; do \
+	  for dir in $$SUBDIRS ; do \
 	  docker cp $(CONTAINER_ID):/usr/src/redmine/$$dir ../../data/redmine_$(PRJ_INDEX)/ ; \
 	  done ; \ 
 	  mkdir ../../data/redmine_$$PRJ_INDEX/files ;\
