@@ -227,9 +227,9 @@ subdirs:
 	  echo -n "Init redmine. Create -$$SUBDIRS- in data/redmine_$$PRJ_INDEX..." ;\
 	  mkdir ../../data/redmine_$$PRJ_INDEX ; \
 	  mkdir ../../log/redmine_$$PRJ_INDEX ; \
-	  for dir in $$SUBDIRS ; do \
-	  docker cp $(CONTAINER_ID):/usr/src/redmine/$$dir ../../data/redmine_$(PRJ_INDEX)/ ; \
-	  done ; \ 
+      for dir in $$SUBDIRS ; do \
+        docker cp $(CONTAINER_ID):/usr/src/redmine/$$dir ../../data/redmine_$(PRJ_INDEX)/ ; \
+      done ; \ 
 	  mkdir ../../data/redmine_$$PRJ_INDEX/files ;\
 	  chown -R $$UID_BASE:$$GUID_BASE ../../data/redmine_$(PRJ_INDEX) ;\
 	  mkdir ../../log/redmine_$(PRJ_INDEX)/log ;\
