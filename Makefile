@@ -224,15 +224,17 @@ subdirs:
 	@if[[ -d ../../data/redmine_$$PRJ_INDEX ]]; then \
 	  echo "Subdirs: data/redmine_$$PRJ_INDEX already exist, skip creating..." ; \
 	else \
-	  echo "Init redmine. Create $$SUBDIRS subdirs in data/redmine_$$PRJ_INDEX..." ;\
+	  echo "Init redmine. Create -$$SUBDIRS- in data/redmine_$$PRJ_INDEX..." ;\
 	  mkdir ../../data/redmine_$$PRJ_INDEX ; \
-	for dir in $$SUBDIRS; do \
+	  mkdir ../../log/redmine_$$PRJ_INDEX ; \
+	  for dir in $$SUBDIRS; do \
 	  docker cp $(CONTAINER_ID):/usr/src/redmine/$$dir ../../data/redmine_$(PRJ_INDEX)/ ; \
-	done ; \ 
+	  done ; \ 
 	  mkdir ../../data/redmine_$$PRJ_INDEX/files ;\
 	  chown -R $$UID_BASE:$$GUID_BASE ../../data/redmine_$(PRJ_INDEX) ;\
 	  mkdir ../../log/redmine_$(PRJ_INDEX)/log ;\
 	  chown -R $$UID_BASE:$$GUID_BASE ../../log/redmine_$(PRJ_INDEX) ;\
+	  echo "Ok" ; \
 	fi
 
 #	@docker cp $(CONTAINER_ID):/usr/src/redmine/tmp ../../data/redmine_rm4
