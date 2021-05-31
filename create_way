@@ -10,6 +10,134 @@
 
 
 #Plugin list if use with previous (3.4) version redmine 
-PLUGINS_LIST=sidebar_hide redmine_fixed_header redmine_drawio redmine_wiki_lists  redmine_zenedit redmineup_tags \
-  redmine_theme_changer a_common_libs unread_issues usability redmine_user_specific_theme view_customize \
-  redmine_wiki_extensions issue_id redmine_issue_todo_lists easy_mindmup easy_wbs redhopper redmine_code_review redmine_local_avatars
+PLUGINS_LIST=sidebar_hide redmine_fixed_header redmine_drawio redmine_wiki_lists redmine_zenedit 
+        redmineup_tags redmine_theme_changer a_common_libs unread_issues usability 
+        redmine_user_specific_theme view_customize redmine_wiki_extensions issue_id 
+        redmine_issue_todo_lists easy_mindmup easy_wbs redmine_code_review 
+        redmine_local_avatars
+
+
+#Using plugins list from redmine Admin web pages 3.4 version
+A common libraries
+This is a plugin for including common libraries
+http://rmplus.pro/
+Danil Kukhlevskiy	2.4.9	Configure
+
+Easy MindMup plugin
+Mind map view based on MindMup
+www.easyredmine.com
+Easy Software Ltd	1.0	
+
+Easy WBS plugin
+new WBS tree hierarchy generator
+www.easyredmine.com
+Easy Software Ltd	1.5	
+
+Redmine Checklists plugin (Light version)
+This is a issue checklist plugin for Redmine
+https://www.redmineup.com/pages/plugins/checklists
+RedmineUP	3.1.14	Configure
+
+Redmine Code Review plugin
+This is a Code Review plugin for Redmine
+http://www.r-labs.org/projects/show/codereview
+Haruyuki Iida	0.9.0	
+
+Redmine Drawio plugin
+Wiki macro plugin for inserting drawio diagrams into Wiki pages and Issues
+https://github.com/mikitex70/redmine_drawio
+Michele Tessaro	0.8.3	Configure
+
+Redmine Fixed Header plugin
+This is a plugin for Redmine to show fixed header in issue page.
+https://github.com/YujiSoftware/redmine-fixed-header
+Yuji Software	1.0.0	
+
+Hourglass
+Track your time and book it on issues and projects
+http://github.com/hicknhack-software/redmine_hourglass
+HicknHack Software GmbH	1.0.0	Configure
+
+Redmine Issue Templates plugin
+Plugin to generate and use issue templates for each project to assist issue creation.
+https://github.com/akiko-pusu/redmine_issue_templates
+Akiko Takano	0.2.1	Configure
+
+Issue To-do Lists Plugin
+Organize issues in to-do lists by manually ordering their priority
+https://github.com/canidas/redmine_issue_todo_lists
+Den	1.1.2	
+
+Redmine Lightbox 2
+This plugin lets you preview image and pdf attachments in a lightbox.
+https://github.com/paginagmbh/redmine_lightbox2
+Tobias Fischer	0.4.3	
+
+Redmine Local Avatars plugin
+This plugin lets users upload avatars directly into Redmine
+Andrew Chaika and Luca Pireddu	1.0.3	
+
+Redmine Recurring Tasks
+Plugin for creating scheduled tasks from template
+https://github.com/centosadmin/redmine_recurring_tasks
+Southbridge	0.3.0	Configure
+
+Redmine Theme Changer plugin
+Lets each user select a theme for Redmine
+http://www.r-labs.org/projects/themechanger
+Haruyuki Iida	0.3.1	
+
+Redmine Wiki Lists plugin
+wiki macros to display lists of issues.
+https://www.r-labs.org/projects/wiki_lists/wiki/Wiki_Lists_en
+Tomohisa Kusukawa	0.0.9	
+
+Redmine Zen Edit plugin (Light version)
+This is a Zen edit plugin for Redmine
+https://www.redmineup.com/pages/plugins/zenedit
+RedmineUP	1.0.2	
+
+Redmine Tags plugin (Light version)
+Redmine issues tagging support
+https://www.redmineup.com/pages/tags
+RedmineUP	2.0.4	Configure
+
+Redmine User Mentions plugin
+http://rmplus.pro/redmine/plugins/user_mentions
+Kovalevsky Vasil	1.0.3	Configure
+
+RMPlus Devtools plugin
+Collection of tools useful for Redmine developers
+http://rmplus.pro/redmine/plugins/rmplus_devtools
+Alexey Glukhov, Danil Kukhlevskiy	1.1.0	Configure
+
+Scrum Redmine plugin
+This plugin for Redmine allows to follow Scrum methodology with Redmine projects
+https://redmine.ociotec.com/projects/redmine-plugin-scrum
+Emilio González Montaña	0.18.1	Configure
+
+Sidebar Hide Plugin
+This plugin provides ability to hide sidebar
+https://github.com/bdemirkir/sidebar_hide
+Berk Demirkır	0.0.8	
+
+Under Construction
+This is a plugin for temporary disable RM pages
+http://rmplus.pro/redmine/plugins/under_construction
+Danil Kukhlevskiy	2.0.7	Configure
+
+Unread Issues plugin
+This is a plugin for Redmine, that marks unread issues
+http://rmplus.pro/redmine/plugins/unread_issues
+Vladimir Pitin, Danil Kukhlevskiy, Kovalevsky Vasil	2.2.2	Configure
+
+Usability plugin
+This is a plugin for Redmine improving behaviour
+http://rmplus.pro/redmine/plugins/usability
+Vladimir Pitin, Danil Kukhlevskiy, Kovalevsky Vasil	2.3.2	Configure
+
+View Customize plugin
+View Customize plugin for Redmine
+https://github.com/onozaty/redmine-view-customize
+onozaty	2.0.0	
+
