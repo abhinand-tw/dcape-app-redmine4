@@ -145,6 +145,11 @@ reup:
 reup: CMD=up --force-recreate -d
 reup: subdirs dc
 
+## build the custom image
+build:
+build: CMD=build
+build: dc
+
 ## остановка и удаление всех контейнеров
 down:
 down: CMD=down -v
