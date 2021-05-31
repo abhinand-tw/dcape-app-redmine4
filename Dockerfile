@@ -40,6 +40,7 @@ RUN set -x \
 	&& git clone https://github.com/makotokw/redmine-theme-gitmike.git gitmike \
 	&& cd ../.. \
 	#     && rm plugins/easy_wbs/Gemfile \
-	&& bundle install --no-cache --no-prune --without development test \
-	&& bunlde update --without development test \
+	&& bundle update --no-cache --no-prune --without development test \
+	&& bunlde install --local --without development test \
+	&& bundle exec rake redmine:plugins:assets RAILS_ENV=production
 
