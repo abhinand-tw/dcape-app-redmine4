@@ -23,22 +23,19 @@
 
 ## Usage
 
+For deploy this project need direct root access to the server
+
 * Fork this repo in your Git service
 * Setup deploy hook
 * Run "Test delivery" (config sample will be created in dcape)
-* Edit and save config (enable deploy etc)
-* Run "Test delivery" again (app will be installed and started on webhook host)
-
-Redmine can be deployed from a special docker-image with some plugins.
-See detail in [dockerfile-redmine](https://github.com/dopos/dockerfile-redmine).
-<<<<<<< HEAD
-=======
-
+* Run `make build` in deploy catalog on the server (build image, create persist subdirs and copy data)
+* Run `make start` in deploy catalog for migrate plugins data
+* Run in container: `bundle exec rake redmine:plugins:assets RAILS_ENV=production` for user redmine
+* Run `make stop` and `make start` again for restart redmine and load plugins
+* Set REDMINE_NO_DB_MIGRATE=yes and REDMINE_PLUGINS_MIGRATE set to empty
 
 TODO
 Add manual for use database backup (create with -t option and restore, set variables and other)
-
->>>>>>> it/master
 
 See also: [Deploy setup](https://github.com/dopos/dcape/blob/master/DEPLOY.md) (in Russian)
 

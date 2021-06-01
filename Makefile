@@ -44,19 +44,23 @@ DCAPE_NET          ?= $(DCAPE_PROJECT_NAME)_default
 # dcape postgresql container name
 DCAPE_DB           ?= $(DCAPE_PROJECT_NAME)_db_1
 
+# Variables for redmine init
+REDMINE_NO_DB_MIGRATE        ?= 
+REDMINE_PLUGINS_MIGRATE      ?= yes
+
 #environments for SMTP email configuration
-REDMINE_EMAIL_DELIVERY_METHOD = :smtp
-REDMINE_EMAIL_ADDRESS         = localhost
-REDMINE_EMAIL_PORT            = 25
-REDMINE_EMAIL_AUTHENTICATION  = :login
-REDMINE_EMAIL_DOMAIN          = localhost
-REDMINE_EMAIL_USER_NAME       =
-REDMINE_EMAIL_PASSWORD        =
+REDMINE_EMAIL_DELIVERY_METHOD ?= :smtp
+REDMINE_EMAIL_ADDRESS         ?= localhost
+REDMINE_EMAIL_PORT            ?= 25
+REDMINE_EMAIL_AUTHENTICATION  ?= :login
+REDMINE_EMAIL_DOMAIN          ?= localhost
+REDMINE_EMAIL_USER_NAME       ?=
+REDMINE_EMAIL_PASSWORD        ?=
 
 # Docker-compose image tag
 DC_VER             ?= 1.28.6
 # Container id for prepare subdirs
-CONTAINER_ID       = $(shell docker create -v /var/run/docker.sock:/var/run/docker.sock ${IMAGE_BASE}:${IMAGE_BASE_VER})
+CONTAINER_ID       = $(shell docker create -v /var/run/docker.sock:/var/run/docker.sock ${IMAGE_BULD}:${IMAGE_BUILD_VER})
 
 define CONFIG_DEF
 # ------------------------------------------------------------------------------
@@ -101,6 +105,10 @@ DCAPE_NET=$(DCAPE_NET)
 # dcape postgresql container name
 DCAPE_DB=$(DCAPE_DB)
 
+# Variables for redmine init
+REDMINE_NO_DB_MIGRATE=$(REDMINE_NO_DB_MIGRATE) 
+REDMINE_PLUGINS_MIGRATE=$(REDMINE_PLUGINS_MIGRATE)
+
 #environments for SMTP email configuration
 REDMINE_EMAIL_DELIVERY_METHOD=$(REDMINE_EMAIL_DELIVERY_METHOD)
 REDMINE_EMAIL_ADDRESS=$(REDMINE_EMAIL_ADDRESS)
@@ -138,17 +146,17 @@ db-dump: db-dump
 ## старт контейнеров
 up:
 up: CMD=up -d
-up: subdirs dc
+up: dc
 
 ## рестарт контейнеров
 reup: 
 reup: CMD=up --force-recreate -d
-reup: subdirs dc
+reup: dc
 
 ## build the custom image
 build:
 build: CMD=build
-build: dc
+build: dc subdirs
 
 ## остановка и удаление всех контейнеров
 down:
@@ -225,7 +233,7 @@ db-dump: docker-wait
 
 # prepare subdirectory from IMAGE_BASE to use in permanent with dcape environment
 subdirs:
-	@echo "*** $@ ***"	
+	@echo "*** $@ ***"
 	@if [[ -d ../../data/redmine_$$PRJ_INDEX ]] ; then \
 	  echo "Subdirs: data/redmine_$$PRJ_INDEX already exist, skip creating..." ; \
 	else \
