@@ -138,7 +138,7 @@ db-dump: db-dump
 ## старт контейнеров
 up:
 up: CMD=up -d
-up: dc
+up: subdirs dc
 
 ## рестарт контейнеров
 reup: 
