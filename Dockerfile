@@ -41,6 +41,6 @@ RUN set -x \
 	&& cd ../.. \
 	#     && rm plugins/easy_wbs/Gemfile \
 	&& bundle update \
-	&& bunlde install --local --without development test 
+	&& bundle install --local --without development test 
 
 
