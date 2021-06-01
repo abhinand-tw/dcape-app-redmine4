@@ -33,7 +33,7 @@ RUN set -x \
 	&& git clone https://github.com/paginagmbh/redmine_lightbox2.git \
 	&& git clone https://github.com/hicknhack-software/redmine_hourglass \
 	# remove string - "gem 'saas'" from Gemfile, for delete dependency error version >= 0, we have saas '~> 3.4.15'
-##	&& sed -i '/sass/d' redmine_hourglass/Gemfile \
+	&& sed -i '/sass/d' redmine_hourglass/Gemfile \
 	# add themes for redmine
 	&& cd /usr/src/redmine/public/themes \
 	# gitmike
