@@ -40,7 +40,7 @@ RUN set -x \
 	&& git clone https://github.com/makotokw/redmine-theme-gitmike.git gitmike \
 	&& cd ../.. \
 	#     && rm plugins/easy_wbs/Gemfile \
-	&& bundle update --no-cache --no-prune --without development test \
+	&& bundle update \
 	&& bunlde install --local --without development test 
 
 
