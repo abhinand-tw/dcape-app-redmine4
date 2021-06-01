@@ -41,6 +41,6 @@ RUN set -x \
 	&& cd ../.. \
 	#     && rm plugins/easy_wbs/Gemfile \
 	&& bundle update --no-cache --no-prune --without development test \
-	&& bunlde install --local --without development test \
-	&& bundle exec rake redmine:plugins:assets RAILS_ENV=production
+	&& bunlde install --local --without development test 
+
 

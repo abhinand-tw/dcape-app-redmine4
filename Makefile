@@ -8,10 +8,6 @@ CFG                ?= .env
 APP_SITE           ?= rm.lan
 # Redmine subdirs (plugins, files, tmp, public, db, log ) index for use on dcape 
 PRJ_INDEX          ?= rm4
-# Name for custom build image
-IMAGE_BUILD        ?= redmine_$(PRJ_INDEX)
-# Version for custom build image
-IMAGE_BUILD_VER    ?= 0.1
 
 
 # Database name
@@ -24,10 +20,14 @@ DB_PASS            ?= $(shell < /dev/urandom tr -dc A-Za-z0-9 | head -c14; echo)
 DB_SOURCE          ?=
 
 
-# Docker base image name that use for building custom image
+# Docker image name that use for start redmine or building custom image
 IMAGE_BASE         ?= redmine
 # Docker base image tag
 IMAGE_BASE_VER     ?= 4.1.3
+# Name for custom build image
+IMAGE_BUILD        ?= redmine_$(PRJ_INDEX)
+# Version for custom build image
+IMAGE_BUILD_VER    ?= 0.1
 # Subdirs list for copy to volume and prepare use with dcape, 
 # log and files dirs empry and prepare always, don't need insert to SUBDIRS
 SUBDIRS            ?= public db plugins tmp
