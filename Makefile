@@ -60,7 +60,7 @@ REDMINE_EMAIL_PASSWORD        ?=
 # Docker-compose image tag
 DC_VER             ?= 1.28.6
 # Container id for prepare subdirs
-CONTAINER_ID       = $(shell docker create -v /var/run/docker.sock:/var/run/docker.sock ${IMAGE_BULD}:${IMAGE_BUILD_VER})
+CONTAINER_ID       = $(shell docker create -v /var/run/docker.sock:/var/run/docker.sock ${IMAGE_BUILD}:${IMAGE_BUILD_VER})
 
 define CONFIG_DEF
 # ------------------------------------------------------------------------------

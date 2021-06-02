@@ -30,6 +30,7 @@ For deploy this project need direct root access to the server
 * Run "Test delivery" (config sample will be created in dcape)
 * Run `make build` in deploy catalog on the server (build image, create persist subdirs and copy data)
 * Run `make start` in deploy catalog for migrate plugins data
+* Run in container: `bundle exec rake redmine:plugins:migrate RAILS_ENV=production` for user redmine
 * Run in container: `bundle exec rake redmine:plugins:assets RAILS_ENV=production` for user redmine
 * Run `make stop` and `make start` again for restart redmine and load plugins
 * Set REDMINE_NO_DB_MIGRATE=yes and REDMINE_PLUGINS_MIGRATE set to empty
