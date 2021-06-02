@@ -9,6 +9,8 @@ CFG                ?= .env
 PRJ_INDEX          ?= rm4
 # Site host
 APP_SITE           ?= $(PRJ_INDEX).lan
+# REDIR var use for redir all traific to https, default = http
+REDIR_ENTRY        ?= http
 
 
 # Database name
@@ -26,6 +28,7 @@ DB_SOURCE          ?=
 #CMD_DEPLOY                ?= up -d --force-recreate
 # For build and prepare image
 CMD_DEPLOY         ?= build
+
 
 # Docker image name that use for start redmine or building custom image
 IMAGE_BASE         ?= redmine
@@ -77,10 +80,9 @@ define CONFIG_DEF
 PRJ_INDEX=$(PRJ_INDEX)
 # Site host
 APP_SITE=$(APP_SITE)
-# Name for custumise builded image
-IMAGE_BUILD=$(IMAGE_BUILD)
-# Version
-IMAGE_BUILD_VER=$(IMAGE_BUILD_VER)
+# REDIR var use for redir all traific to https, default = http
+REDIR_ENTRY=$(REDIR_ENTRY)
+
 
 # CMD_DEPLOY var use for separete process: 1. build and prepare image; 2. start redmine
 # For start redmine
@@ -104,6 +106,10 @@ DB_SOURCE=$(DB_SOURCE)
 IMAGE_BASE=$(IMAGE_BASE)
 # Docker base image tag
 IMAGE_BASE_VER=$(IMAGE_BASE_VER)
+# Name for custumise builded image
+IMAGE_BUILD=$(IMAGE_BUILD)
+# Version
+IMAGE_BUILD_VER=$(IMAGE_BUILD_VER)
 # Subdirs list for copy to volume and use with dcape
 SUBDIRS=$(SUBDIRS)
 # Redmine user ID for IMAGE_BASE
