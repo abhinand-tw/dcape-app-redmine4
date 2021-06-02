@@ -21,11 +21,11 @@ DB_PASS            ?= $(shell < /dev/urandom tr -dc A-Za-z0-9 | head -c14; echo)
 DB_SOURCE          ?=
 
 
-# CMD var use for separete process: 1. build and prepare image; 2. start redmine
+# CMD_DEPLOY var use for separete process: 1. build and prepare image; 2. start redmine
 # For start redmine
-#CMD                ?= up -d --force-recreate
+#CMD_DEPLOY                ?= up -d --force-recreate
 # For build and prepare image
-CMD                 ?= build
+CMD_DEPLOY         ?= build
 
 # Docker image name that use for start redmine or building custom image
 IMAGE_BASE         ?= redmine
@@ -82,12 +82,12 @@ IMAGE_BUILD=$(IMAGE_BUILD)
 # Version
 IMAGE_BUILD_VER=$(IMAGE_BUILD_VER)
 
-# CMD var use for separete process: 1. build and prepare image; 2. start redmine
+# CMD_DEPLOY var use for separete process: 1. build and prepare image; 2. start redmine
 # For start redmine
-#CMD                ?= up -d --force-recreate
+#CMD_DEPLOY                ?= up -d --force-recreate
 # For build and prepare image
-#CMD                 ?= build
-CMD=$(CMD)
+#CMD_DEPLOY                 ?= build
+CMD_DEPLOY=$(CMD_DEPLOY)
 
 # Database name
 DB_NAME=$(DB_NAME)
@@ -158,12 +158,12 @@ db-dump: db-dump
 # docker commands
 ## старт контейнеров
 up:
-up: CMD=$$CMD
+up: CMD=$(CMD_DEPLOY)
 up: dc subdirs
 
 ## рестарт контейнеров
 reup: 
-reup: CMD=$$CMD
+reup: CMD=$(CMD_DEPLOY)
 reup: dc subdirs
 
 ## остановка и удаление всех контейнеров
