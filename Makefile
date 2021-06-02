@@ -73,10 +73,10 @@ define CONFIG_DEF
 # ------------------------------------------------------------------------------
 # Redmine settings
 
-# Site host
-APP_SITE=$(APP_SITE)
 # Redmine subdirs (plugins, files, tmp, public, db, log ) index use for dcape 
 PRJ_INDEX=$(PRJ_INDEX)
+# Site host
+APP_SITE=$(APP_SITE)
 # Name for custumise builded image
 IMAGE_BUILD=$(IMAGE_BUILD)
 # Version
