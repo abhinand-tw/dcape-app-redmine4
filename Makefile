@@ -84,9 +84,9 @@ IMAGE_BUILD_VER=$(IMAGE_BUILD_VER)
 
 # CMD_DEPLOY var use for separete process: 1. build and prepare image; 2. start redmine
 # For start redmine
-#CMD_DEPLOY                ?= up -d --force-recreate
+#CMD_DEPLOY=up -d --force-recreate
 # For build and prepare image
-#CMD_DEPLOY                 ?= build
+#CMD_DEPLOY=build
 CMD_DEPLOY=$(CMD_DEPLOY)
 
 # Database name
