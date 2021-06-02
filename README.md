@@ -33,8 +33,8 @@ For deploy this project need direct root access to the server
 * Run `make start` in deploy catalog for migrate plugins data
 * Run in container: `bundle exec rake redmine:plugins:migrate RAILS_ENV=production` for user redmine
 * Run in container: `bundle exec rake redmine:plugins:assets RAILS_ENV=production` for user redmine
-* Run `make stop` and `make start` again for restart redmine and load plugins
 * Set REDMINE_NO_DB_MIGRATE=yes and REDMINE_PLUGINS_MIGRATE set to empty
+* Run `make stop` and `make start` again for restart redmine and load plugins
 
 TODO
 Add manual for use database backup (create with -t option and restore, set variables and other)
