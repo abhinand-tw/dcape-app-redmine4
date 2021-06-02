@@ -4,10 +4,11 @@
 SHELL               = /bin/bash
 CFG                ?= .env
 
-# Site host
-APP_SITE           ?= rm.lan
+
 # Redmine subdirs (plugins, files, tmp, public, db, log ) index for use on dcape 
 PRJ_INDEX          ?= rm4
+# Site host
+APP_SITE           ?= $(PRJ_INDEX).lan
 
 
 # Database name
@@ -19,6 +20,12 @@ DB_PASS            ?= $(shell < /dev/urandom tr -dc A-Za-z0-9 | head -c14; echo)
 # Database dump filename, without extensions (.gz), for import on create (you must use file .gz formant)
 DB_SOURCE          ?=
 
+
+# CMD var use for separete process: 1. build and prepare image; 2. start redmine
+# For start redmine
+#CMD                ?= up -d --force-recreate
+# For build and prepare image
+CMD                 ?= build
 
 # Docker image name that use for start redmine or building custom image
 IMAGE_BASE         ?= redmine
@@ -75,6 +82,12 @@ IMAGE_BUILD=$(IMAGE_BUILD)
 # Version
 IMAGE_BUILD_VER=$(IMAGE_BUILD_VER)
 
+# CMD var use for separete process: 1. build and prepare image; 2. start redmine
+# For start redmine
+#CMD                ?= up -d --force-recreate
+# For build and prepare image
+#CMD                 ?= build
+CMD=$(CMD)
 
 # Database name
 DB_NAME=$(DB_NAME)
@@ -145,18 +158,13 @@ db-dump: db-dump
 # docker commands
 ## старт контейнеров
 up:
-up: CMD=up -d
-up: dc
+up: CMD=$$CMD
+up: dc subdirs
 
 ## рестарт контейнеров
 reup: 
-reup: CMD=up --force-recreate -d
-reup: dc
-
-## build the custom image
-build:
-build: CMD=build
-build: dc subdirs
+reup: CMD=$$CMD
+reup: dc subdirs
 
 ## остановка и удаление всех контейнеров
 down:
@@ -249,10 +257,6 @@ subdirs:
 	  chown -R $$UID_BASE:$$GUID_BASE ../../log/redmine_$(PRJ_INDEX) ;\
 	  echo "Ok" ; \
 	fi
-
-#	@docker cp $(CONTAINER_ID):/usr/src/redmine/tmp ../../data/redmine_rm4
-
-
 
 
 # ------------------------------------------------------------------------------
