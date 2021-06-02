@@ -26,8 +26,9 @@
 For deploy this project need direct root access to the server
 
 * Fork this repo in your Git service
-* Setup deploy hook
+* Setup deploy hook 
 * Run "Test delivery" (config sample will be created in dcape)
+* Put data to the config (keep _CI_HOOK_ENABLED=no)
 * Run `make build` in deploy catalog on the server (build image, create persist subdirs and copy data)
 * Run `make start` in deploy catalog for migrate plugins data
 * Run in container: `bundle exec rake redmine:plugins:migrate RAILS_ENV=production` for user redmine
