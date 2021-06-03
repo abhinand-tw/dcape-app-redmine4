@@ -83,12 +83,10 @@ APP_SITE=$(APP_SITE)
 # REDIR var use for redir all traific to https, default = http
 REDIR_ENTRY=$(REDIR_ENTRY)
 
-
 # CMD_DEPLOY var use for separete process: 1. build and prepare image; 2. start redmine
 # For start redmine
 #CMD_DEPLOY=up -d --force-recreate
 # For build and prepare image
-#CMD_DEPLOY=build
 CMD_DEPLOY=$(CMD_DEPLOY)
 
 # Database name
@@ -101,7 +99,6 @@ DB_PASS=$(DB_PASS)
 DB_SOURCE=$(DB_SOURCE)
 
 # Docker details
-
 # Docker base image name that use for building custom image
 IMAGE_BASE=$(IMAGE_BASE)
 # Docker base image tag

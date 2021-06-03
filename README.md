@@ -31,7 +31,7 @@ For deploy this project need direct root access to the server
 * Put data to the config (set CMD_DEPLOY=build, set _CI_HOOK_ENABLED=yes)
 * Press "Test delivery" button
 * Check build log on cis web service 
-* Edit config and set CMD_DEPLOY=up -d --force-recreate
+* Edit config and set CMD_DEPLOY=up -d --force-recreate (set REDIR_ENTRY=https if need)
 * Press "Test delivery" button
 * Run `make start` in deploy catalog for migrate plugins data
 * Run in container: `bundle exec rake redmine:plugins:migrate RAILS_ENV=production` for user redmine
