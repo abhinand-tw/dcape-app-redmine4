@@ -3,7 +3,7 @@
 [![GitHub Release][1]][2] [![GitHub code size in bytes][3]]() [![GitHub license][4]][5]
 
 [1]: https://img.shields.io/github/release/dopos/dcape-app-redmine.svg
-[2]: https://github.com/dopos/dcape-app-redmine/releases
+[2]: https://github.com/abhinand-tw/dcape-app-redmine4/releases
 [3]: https://img.shields.io/github/languages/code-size/dopos/dcape-app-redmine.svg
 [4]: https://img.shields.io/github/license/dopos/dcape-app-redmine.svg
 [5]: LICENSE
