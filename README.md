@@ -8,7 +8,7 @@
 [4]: https://img.shields.io/github/license/dopos/dcape-app-redmine.svg
 [5]: LICENSE
 
-[Redmine](https://en.wikipedia.org/wiki/Redmine) application configuration for automatic build custom docker image, deploy and use with [dcape](https://github.com/dopos/dcape). Image building with public plugins and theme.
+[Redmine](https://en.wikipedia.org/wiki/Redmine) application configuration for automatic build custom docker image, deploy and use with [dcape](https://github.com/dopos/dcape). Image building with public plugins and themes.
 
 ### Building docker image content
 
@@ -24,6 +24,8 @@
 * [redmine_code_review](https://github.com/haru/redmine_code_review)
 * [redmine_issue_templates](https://github.com/akiko-pusu/redmine_issue_templates)
 * [redmine_lightbox2](https://github.com/paginagmbh/redmine_lightbox2.git)
+#### Themes
+* [gitmike](https://github.com/makotokw/redmine-theme-gitmike.git)
 
 ## Docker image used
 
