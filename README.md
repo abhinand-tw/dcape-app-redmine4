@@ -8,18 +8,34 @@
 [4]: https://img.shields.io/github/license/dopos/dcape-app-redmine.svg
 [5]: LICENSE
 
-[Redmine](https://en.wikipedia.org/wiki/Redmine) application configuration for set: plugins, passenger, configured postgresql backend for automated deploy of [dcape](https://github.com/dopos/dcape).
+[Redmine](https://en.wikipedia.org/wiki/Redmine) application configuration for automatic build custom docker image, deploy and use with [dcape](https://github.com/dopos/dcape). Image building with public plugins and theme.
+
+### Building docker image content
+
+#### Plugins
+* [sidebar_hide](https://github.com/jouve/sidebar_hide)
+* [redmine-fixed-header](https://github.com/YujiSoftware/redmine-fixed-header.git)
+* [redmine_drawio](https://github.com/mikitex70/redmine_drawio.git)
+* [redmine_wiki_lists](https://github.com/tkusukawa/redmine_wiki_lists.git)
+* [redmine_theme_changer](https://github.com/haru/redmine_theme_changer.git)
+* [redmine_view_customize](https://github.com/onozaty/redmine-view-customize.git)
+* [redmine_wiki_extension](https://github.com/haru/redmine_wiki_extensions.git)
+* [redmine_issue_todo_lists](https://github.com/canidas/redmine_issue_todo_lists.git)
+* [redmine_code_review](https://github.com/haru/redmine_code_review)
+* [redmine_issue_templates](https://github.com/akiko-pusu/redmine_issue_templates)
+* [redmine_lightbox2](https://github.com/paginagmbh/redmine_lightbox2.git)
 
 ## Docker image used
 
-* [redmine](https://hub.docker.com/r/abhinand12/redmine3.4-plugins-passenger/) special builded image
+For build custom docker image you can use any standard redmine docker image. Image name and version set in configuration. By default tested with redmine 4.x image version.
+* [redmine](https://hub.docker.com/_/redmine)
 
 ## Requirements
 
 * linux 64bit (git, make, wget, gawk, openssl)
 * [docker](http://docker.io)
 * [dcape](https://github.com/dopos/dcape)
-* Git service ([github](https://github.com), [gitea](https://gitea.io) or [gogs](https://gogs.io))
+* Git service ([github](https://github.com), [gitea](https://gitea.io)
 
 ## Usage
 
@@ -33,14 +49,18 @@ For deploy this project need direct root access to the server
 * Check build log on cis web service 
 * Edit config and set CMD_DEPLOY=up -d --force-recreate (set REDIR_ENTRY=https if need)
 * Press "Test delivery" button
-* Run `make start` in deploy catalog for migrate plugins data
-* Run in container: `bundle exec rake redmine:plugins:migrate RAILS_ENV=production` for user redmine
 * Run in container: `bundle exec rake redmine:plugins:assets RAILS_ENV=production` for user redmine
+* Load default redmine database configuration on administrate setting web page
 * Set REDMINE_NO_DB_MIGRATE=yes and REDMINE_PLUGINS_MIGRATE set to empty
-* Run `make stop` and `make start` again for restart redmine and load plugins
+* Restart redmine and enjoy
+
+
+## Database load and backup
+
+In Makefile content script for make and load database backup for postgres database.
 
 TODO
-Add manual for use database backup (create with -t option and restore, set variables and other)
+Add autimatic create and rotate backup files.
 
 See also: [Deploy setup](https://github.com/dopos/dcape/blob/master/DEPLOY.md) (in Russian)
 
@@ -48,4 +68,4 @@ See also: [Deploy setup](https://github.com/dopos/dcape/blob/master/DEPLOY.md) (
 
 The MIT License (MIT), see [LICENSE](LICENSE).
 
-2018 Maxim Danilin <zan@whiteants.net>
+2021 Maxim Danilin <zan@whiteants.net>
