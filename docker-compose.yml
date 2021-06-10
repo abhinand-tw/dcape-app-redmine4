@@ -2,11 +2,6 @@ version: '3.8'
 
 services:
   www:
-    build:
-      context: .
-      args:
-        IMAGE_BASE: ${IMAGE_BASE}
-        IMAGE_BASE_VER: ${IMAGE_BASE_VER}
     image: ${IMAGE_BUILD}:${IMAGE_BUILD_VER}   
     restart: always
     networks:

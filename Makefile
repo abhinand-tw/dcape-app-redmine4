@@ -33,7 +33,7 @@ CMD_DEPLOY         ?= build
 # Docker image name that use for start redmine or building custom image
 IMAGE_BASE         ?= redmine
 # Docker base image tag
-IMAGE_BASE_VER     ?= 4.1.3
+IMAGE_BASE_VER     ?= 4.1.3-passenger
 # Name for custom build image
 IMAGE_BUILD        ?= redmine_$(PRJ_INDEX)
 # Version for custom build image
@@ -162,17 +162,22 @@ db-dump: db-dump
 ## старт контейнеров
 up:
 up: CMD=$(CMD_DEPLOY)
-up: dc subdirs
+up: dc 
 
 ## рестарт контейнеров
 reup: 
 reup: CMD=$(CMD_DEPLOY)
-reup: dc subdirs
+reup: dc
 
 ## остановка и удаление всех контейнеров
 down:
 down: CMD=down -v
 down: dc
+
+## build image for service
+build:
+build: CMD=build --build-arg IMAGE_BASE=$(IMAGE_BASE) --build-arg IAGE_BASE_VER=$(IMAGE_BASE_VER)
+build: dc subdirs
 
 # Wait for postgresql container start
 docker-wait:

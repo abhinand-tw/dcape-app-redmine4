@@ -31,6 +31,7 @@
 
 For build custom docker image you can use any standard redmine docker image. Image name and version set in configuration. By default tested with redmine 4.x image version.
 * [redmine](https://hub.docker.com/_/redmine)
+Best practice use image with Passenger application server, because standart WebRick is not to fast.
 
 ## Requirements
 
